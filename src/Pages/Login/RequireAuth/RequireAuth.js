@@ -19,7 +19,7 @@ const RequireAuth = ({children}) => {
     if(loading){
         return <Loading></Loading>;
         }
-        console.log(user)
+        // console.log(user)
     if(user.providerData[0]?.providerId ==='password' && !user.emailVerified){
         return <div className='text-center pt-5'>
             <h3 className='text-danger'>Your Email is not Verified !</h3>
