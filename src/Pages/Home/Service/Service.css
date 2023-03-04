@@ -1,0 +1,20 @@
+.service{
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    padding-bottom: 10px; 
+    text-align: center;
+    background-color: rgb(240,255,605);
+}
+.service button{
+    border: none;
+    background-color: rgb(00,00,405);
+    color: white;
+    border-radius: 5px;
+    padding-left: 13px; padding-right: 13px;
+    padding-top: 6px; padding-bottom: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.service img{
+    width: 100%;
+}
