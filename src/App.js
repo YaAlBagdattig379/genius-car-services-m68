@@ -48,11 +48,10 @@ function App() {
               <ManageServices></ManageServices>
             </RequireAuth>
           }></Route>
-          <Route path='/orders'element={
-              <RequireAuth>
-                  <Order></Order>
-              </RequireAuth>
-              
+          <Route path='/orders' element={
+            <RequireAuth>
+              <Order></Order>
+            </RequireAuth>
           }></Route>
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/register' element={<Register></Register>}></Route>
