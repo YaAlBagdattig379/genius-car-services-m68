@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate} from 'react-router-dom';
+import { useLocation, useNavigate} from 'react-router-dom';
 import auth from '../../../firebase.init';
 import googleLogo from '../../../images/SocialLogin/GoogleLogo.png';
 import facebookLogo from '../../../images/SocialLogin/facebook.png';
@@ -11,6 +11,9 @@ const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate();
+    const location = useLocation(auth);
+    const from = location.state?.from?.pathname || '/';
+
     let errorElement;
     useEffect(()=>{
     if(loading){
@@ -22,9 +25,7 @@ const SocialLogin = () => {
       }
     useEffect(()=>{
       if (user || user1) {
-        return (
-          navigate('/')
-        );
+          navigate(from,{replace: true});
       }
     },[user || user1])
     return (
