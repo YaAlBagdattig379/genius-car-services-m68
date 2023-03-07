@@ -24,11 +24,15 @@ const Login = () => {
       loading,
       error,
     ] = useSignInWithEmailAndPassword(auth);
-    useEffect(()=>{
-      if(loading || sending){
+    // useEffect(()=>{
+    if(loading || sending){
         return <Loading></Loading>
-      }
-    },[])
+    }
+    // useEffect(()=>{
+          if(user){
+            //  navigate(from,{replace: true});
+           } 
+      // })
     const handleSubmit = async (event) =>{
         event.preventDefault();
         const email = emailRef.current.value;
@@ -37,13 +41,8 @@ const Login = () => {
         const {data} = await axios.post('http://localhost:5000/login',{email});
         localStorage.setItem('accessToken',data.accessToken);
         navigate(from,{replace: true});
-        console.log(data)
+        // console.log(data)
       }
-    useEffect(()=>{
-        if(user){
-          //  navigate(from,{replace: true});
-         } 
-    })
     const navigateRegistered = event =>{
        navigate('/register')
     }
