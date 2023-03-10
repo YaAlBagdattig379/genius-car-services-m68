@@ -6,6 +6,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Shared/Loading/Loading';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
+import useToken from '../../../Hooks/useToken';
 
 const Register = () => {
     const [agree,setAgree] = useState(false);
@@ -14,8 +15,9 @@ const Register = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+    ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useToken(user);
     const navigate = useNavigate();
     useEffect(()=>{
         if(loading || updating){
@@ -26,8 +28,10 @@ const Register = () => {
         navigate('./login') ;
     }
     useEffect(()=>{
-       if(user){
+       if(token){
+    //    if(user){
          console.log(user);
+        navigate('/home')
         }
     },[])
     const handleRegister =async (event) =>{
@@ -40,7 +44,7 @@ const Register = () => {
         await  createUserWithEmailAndPassword(email, password);
         // }
         await updateProfile({ displayName : name });
-        navigate('/home')
+        // navigate('/home')
         // alert('Updated profile');
         console.log(name)
     }

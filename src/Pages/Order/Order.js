@@ -14,7 +14,7 @@ const Order = () => {
     useEffect(()=>{
         const getOrders = async()=>{
           try {
-            const email = user.email;
+            const email = user?.email;
             const url = `http://localhost:5000/order?email=${email}`;
             try {
                 const {data}  = await axiosPrivate.get(url);
@@ -41,6 +41,11 @@ const Order = () => {
     return (
         <div>
             <h2>Your Orders : {orders.length}</h2>
+             <div>
+                {
+                orders.map(order=><h3 key={order._id}>email: {order.email} and service: {order.service}</h3>)
+                }
+             </div>
             
         </div>
     );

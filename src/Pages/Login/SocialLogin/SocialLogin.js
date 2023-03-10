@@ -6,6 +6,7 @@ import googleLogo from '../../../images/SocialLogin/GoogleLogo.png';
 import facebookLogo from '../../../images/SocialLogin/facebook.png';
 import gitHubLogo from '../../../images/SocialLogin/gitHub.png';
 import Loading from '../../Shared/Loading/Loading';
+import useToken from '../../../Hooks/useToken';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -13,7 +14,7 @@ const SocialLogin = () => {
     const navigate = useNavigate();
     const location = useLocation(auth);
     const from = location.state?.from?.pathname || '/';
-
+    const [token] = useToken(user || user1);
     let errorElement;
     useEffect(()=>{
     if(loading){
@@ -24,7 +25,8 @@ const SocialLogin = () => {
         errorElement =<p className='text-danger'>Error...{error?.message}{error1?.message}</p>
       }
     useEffect(()=>{
-      if (user || user1) {
+      if (token) {
+      // if (user || user1) {
           navigate(from,{replace: true});
       }
     },[user || user1])
