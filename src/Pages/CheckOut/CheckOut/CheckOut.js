@@ -35,7 +35,7 @@ const CheckOut = () => {
             address : event.target.address.value,
             phone : event.target.phone.value,
         }
-        axios.post('http://localhost:5000/order',order)
+        axios.post('https://genius-car-services-server-m68.vercel.app/order',order)
         .then(response=>{
             console.log(response)
             const {data} = response;

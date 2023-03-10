@@ -9,7 +9,7 @@ const useToken = (user)=>{
             const email = user?.user?.email; 
             // const email = ''; 
             if(email){
-                const {data} = await axios.post('http://localhost:5000/login',{email});
+                const {data} = await axios.post('https://genius-car-services-server-m68.vercel.app/login',{email});
                 console.log(data)
                 setToken(data.accessToken);
                 localStorage.setItem('accessToken',data.accessToken);

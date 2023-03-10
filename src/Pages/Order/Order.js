@@ -15,7 +15,7 @@ const Order = () => {
         const getOrders = async()=>{
           try {
             const email = user?.email;
-            const url = `http://localhost:5000/order?email=${email}`;
+            const url = `https://genius-car-services-server-m68.vercel.app/order?email=${email}`;
             try {
                 const {data}  = await axiosPrivate.get(url);
                 // const {data}  = await axios.get(url);

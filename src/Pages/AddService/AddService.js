@@ -4,7 +4,7 @@ const AddService = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{
         console.log(data);
-        const url = `http://localhost:5000/service`;
+        const url = `https://genius-car-services-server-m68.vercel.app/service`;
         fetch(url,{
             method:'POST',
             headers :{
