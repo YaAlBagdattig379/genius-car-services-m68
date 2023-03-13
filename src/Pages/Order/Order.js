@@ -1,5 +1,3 @@
-import { async } from '@firebase/util';
-import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import React ,{useState,useEffect} from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -12,32 +10,26 @@ const Order = () => {
     const [orders,setOrders] = useState([]);
     const navigate = useNavigate();
     useEffect(()=>{
-        const getOrders = async()=>{
-          try {
-            const email = user?.email;
-            const url = `https://genius-car-services-server-m68.vercel.app/order?email=${email}`;
-            try {
-                const {data}  = await axiosPrivate.get(url);
-                // const {data}  = await axios.get(url);
-                // ,{
-                //     headers : {
-                //         authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                //     }
-                // }
-                setOrders(data);
-            } catch (error) {
-                if(error.response.status === 401 || error.response.status === 403){
-                    signOut(auth);
-                    navigate('/login');
+        if(user){
+            const getOrders = async()=>{
+                console.log(user)
+                const email = user?.email;
+                console.log(email)
+                    const url = `https://genius-car-services-server-m68.vercel.app/order?email=${email}`;
+                    try {
+                        const {data}  = await axiosPrivate.get(url);
+                        setOrders(data);
+                    } catch (error) {
+                        console.log(error.message);
+                        if(error.response.status === 401 || error.response.status === 403){
+                            signOut(auth);
+                            navigate('/login');
+                        }
                 }
             }
-           
-          } catch (error) {
-              console.log(error) 
-          }
+            getOrders();
         }
-        getOrders();
-    },[user])
+    },[navigate, user])
     return (
         <div>
             <h2>Your Orders : {orders.length}</h2>

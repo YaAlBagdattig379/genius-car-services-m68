@@ -24,9 +24,6 @@ const Register = () => {
             return <Loading></Loading>
           }
     },[])
-    const navigateToLogin = ()=>{
-        navigate('./login') ;
-    }
     useEffect(()=>{
        if(token){
     //    if(user){
@@ -34,6 +31,9 @@ const Register = () => {
         navigate('/home')
         }
     },[])
+    const navigateToLogin = ()=>{
+        navigate('./login') ;
+    }
     const handleRegister =async (event) =>{
         event.preventDefault();
         const name = event.target.name.value;

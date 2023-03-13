@@ -11,25 +11,26 @@ import useToken from '../../../Hooks/useToken';
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+    const [token] = useToken(user1 || user);
+    console.log(user,user1)
     const navigate = useNavigate();
-    const location = useLocation(auth);
-    const from = location.state?.from?.pathname || '/';
-    const [token] = useToken(user || user1);
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     let errorElement;
     useEffect(()=>{
-    if(loading){
-      return <Loading></Loading>
-    }
-   },[])
+      if(loading || loading1){
+        return <Loading></Loading>
+      }
+    },[])
     if (error || error1) {
         errorElement =<p className='text-danger'>Error...{error?.message}{error1?.message}</p>
       }
     useEffect(()=>{
       if (token) {
       // if (user || user1) {
-          navigate(from,{replace: true});
+        navigate(from,{replace: true});
       }
-    },[user || user1])
+    },[])
     return (
         <div>
             <div className='d-flex align-items-center'>

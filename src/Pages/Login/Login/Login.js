@@ -25,12 +25,13 @@ const Login = () => {
       loading,
       error,
     ] = useSignInWithEmailAndPassword(auth);
-    console.log(user)
+    // console.log(user)
     const [token] = useToken(user);
     // useEffect(()=>{
     if(loading || sending){
         return <Loading></Loading>
     }
+    console.log(user);
     // useEffect(()=>{
           if(token){
               navigate(from,{replace: true});
