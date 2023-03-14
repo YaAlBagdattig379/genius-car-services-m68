@@ -7,7 +7,7 @@ const useToken = (user)=>{
         const getToken = async ()=>{
             console.log(user)
             const email = user?.user?.email; 
-            // const email = ''; 
+            // const email = user?.user?.displayName; 
             if(email){
                 const {data} = await axios.post('https://genius-car-services-server-m68.vercel.app/login',{email});
                 console.log(data)
