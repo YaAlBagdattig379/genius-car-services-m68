@@ -15,7 +15,7 @@ const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
-    const location = useLocation(auth);
+    const location = useLocation(auth) ;
     const from = location.state?.from?.pathname || '/';
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
     let errorElement;
